@@ -21,6 +21,5 @@ struct Title: Decodable {
     let vote_count: Int
     let release_date: String?
     let vote_average: Double
-    
 }
 

@@ -17,6 +17,9 @@ enum Sections: Int {
 
 class HomeViewController: UIViewController {
     
+    private var randomTrendingMovie: Title?
+    private var headerView: HeroHeaderUIView?
+    
     let sectionTitles: [String] = ["Trending Movies", "Trending TV", "Popular",  "Upcoming Movies", "Top rated"]
     
     private let homeFeedTable: UITableView = {
@@ -36,16 +39,31 @@ class HomeViewController: UIViewController {
         
         configureNaviBar()
         
-        let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
         
-        //         fetchData()
+        configureHeroHeaderView()
+        
+    }
+    
+    private func configureHeroHeaderView() {
+        APICaller.shared.getTrendingMovies { [weak self] result in
+            switch result {
+            case .success(let titles):
+                let selectedTitle = titles.randomElement()
+                self?.randomTrendingMovie = selectedTitle
+                
+                self?.headerView?.configure(with: TitleViewModel(titleName: selectedTitle?.original_title ?? "", posterURL: selectedTitle?.poster_path ?? ""))
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     private func configureNaviBar() {
-        var image = UIImage(named: "test")
-        image = image?.withRenderingMode(.alwaysOriginal)
         
+        var image = UIImage(named: "netflix_logo")
+        image = image?.withRenderingMode(.alwaysOriginal)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
         
         navigationItem.rightBarButtonItems = [
@@ -53,7 +71,6 @@ class HomeViewController: UIViewController {
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
         ]
         navigationController?.navigationBar.tintColor = .label
-        navigationController?.navigationBar.sizeToFit()
     }
     
     override func viewDidLayoutSubviews() {
@@ -98,6 +115,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewTableViewCell", for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
+        
+        cell.delegate = self
         
         switch indexPath.section {
         case Sections.TredningMovies.rawValue:
@@ -185,15 +204,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-
-extension UIImage {
-    func resizeTo(size: CGSize) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: size)
-        let image = renderer.image { _ in
-            self.draw(in: CGRect.init(origin: CGPoint.zero, size: size))
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+        DispatchQueue.main.async { [weak self] in
+            let vc = TitlePreviewViewController()
+            vc.configure(with: viewModel)
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
-        
-        return image.withRenderingMode(self.renderingMode)
     }
 }
 
