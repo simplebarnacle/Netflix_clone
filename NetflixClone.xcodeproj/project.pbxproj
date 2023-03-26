@@ -29,6 +29,8 @@
 		33E4C29729CDBC2000BE60E0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4C29629CDBC2000BE60E0 /* Extensions.swift */; };
 		33E4C29B29CDC5DB00BE60E0 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E4C29A29CDC5DB00BE60E0 /* TitleCollectionViewCell.swift */; };
 		33E4C29E29CDC70200BE60E0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 33E4C29D29CDC70200BE60E0 /* SDWebImage */; };
+		33E6788329CFCF1700983637 /* NetflixCloneModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 33E6788129CFCF1700983637 /* NetflixCloneModel.xcdatamodeld */; };
+		33E6788529CFD13400983637 /* DataPersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E6788429CFD13400983637 /* DataPersistentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		33E4C29429CDB78300BE60E0 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		33E4C29629CDBC2000BE60E0 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		33E4C29A29CDC5DB00BE60E0 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		33E6788229CFCF1700983637 /* NetflixCloneModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetflixCloneModel.xcdatamodel; sourceTree = "<group>"; };
+		33E6788429CFD13400983637 /* DataPersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistentManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,12 +112,13 @@
 		33E4C26A29CD268700BE60E0 /* NetflixClone */ = {
 			isa = PBXGroup;
 			children = (
-				33E4C28D29CD2FAF00BE60E0 /* Managers */,
-				33E4C28C29CD2FA100BE60E0 /* Resources */,
 				33E4C28A29CD2F2C00BE60E0 /* Models */,
 				33E4C28829CD2F1100BE60E0 /* Views */,
 				33E4C28929CD2F2000BE60E0 /* ViewModels */,
 				33E4C27F29CD28FE00BE60E0 /* Controllers */,
+				33E4C28D29CD2FAF00BE60E0 /* Managers */,
+				33E4C28C29CD2FA100BE60E0 /* Resources */,
+				33E6788129CFCF1700983637 /* NetflixCloneModel.xcdatamodeld */,
 				33E4C26B29CD268700BE60E0 /* AppDelegate.swift */,
 				33E4C26D29CD268700BE60E0 /* SceneDelegate.swift */,
 				33E4C26F29CD268700BE60E0 /* MainTabBarViewController.swift */,
@@ -174,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				33E4C29229CDB10900BE60E0 /* APICaller.swift */,
+				33E6788429CFD13400983637 /* DataPersistentManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -260,8 +266,10 @@
 				33E4C29B29CDC5DB00BE60E0 /* TitleCollectionViewCell.swift in Sources */,
 				33E4C27029CD268700BE60E0 /* MainTabBarViewController.swift in Sources */,
 				33E4C28F29CD300100BE60E0 /* CollectionViewTableViewCell.swift in Sources */,
+				33E6788329CFCF1700983637 /* NetflixCloneModel.xcdatamodeld in Sources */,
 				33E4C29329CDB10900BE60E0 /* APICaller.swift in Sources */,
 				33E4C29129CD37C700BE60E0 /* HeroHeaderUIView.swift in Sources */,
+				33E6788529CFD13400983637 /* DataPersistentManager.swift in Sources */,
 				33E4C28729CD297200BE60E0 /* DownloadsViewController.swift in Sources */,
 				3303673229CE8BBC004164C8 /* SearchResultsViewController.swift in Sources */,
 				33E4C26C29CD268700BE60E0 /* AppDelegate.swift in Sources */,
@@ -499,6 +507,19 @@
 			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		33E6788129CFCF1700983637 /* NetflixCloneModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				33E6788229CFCF1700983637 /* NetflixCloneModel.xcdatamodel */,
+			);
+			currentVersion = 33E6788229CFCF1700983637 /* NetflixCloneModel.xcdatamodel */;
+			path = NetflixCloneModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 33E4C26029CD268700BE60E0 /* Project object */;
 }
